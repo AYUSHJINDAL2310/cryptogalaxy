@@ -7,7 +7,7 @@ import CoinInfo from "../components/CoinInfo";
 import { SingleCoin } from "../config/api";
 import { numberWithCommas } from "../components/CoinsTable";
 import { CryptoState } from "../CryptoContext";
-import Chart from "chart.js/auto";
+// import Chart from "chart.js/auto";
 const CoinPage = () => {
   const { id } = useParams();
   const [coin, setCoin] = useState();
