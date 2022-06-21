@@ -1,5 +1,3 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import {
   AppBar,
   Container,
@@ -7,13 +5,16 @@ import {
   Select,
   Toolbar,
   Typography,
-  createTheme,
-  ThemeProvider,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/node_modules/@material-ui/styles";
-import { fontFamily } from "@mui/system";
+import {
+  createTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
-const useStyles = makeStyles(() => ({
+
+const useStyles = makeStyles((theme) => ({
   title: {
     flex: 1,
     color: "gold",
@@ -22,38 +23,41 @@ const useStyles = makeStyles(() => ({
     cursor: "pointer",
   },
 }));
-const Header = () => {
-  const history = useNavigate();
+
+const darkTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#fff",
+    },
+    type: "dark",
+  },
+});
+
+function Header() {
   const classes = useStyles();
   const { currency, setCurrency } = CryptoState();
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
-    },
-  });
+
+  const history = useNavigate();
+
   return (
     <ThemeProvider theme={darkTheme}>
       <AppBar color="transparent" position="static">
         <Container>
           <Toolbar>
             <Typography
-              onClick={() => history("/")}
-              className={classes.title}
+              onClick={() => history(`/`)}
               variant="h6"
+              className={classes.title}
             >
-              CryptoGalaxy
+              Crypto Hunter
             </Typography>
+            {/* <Button color="inherit">Login</Button> */}
             <Select
-              varient="outlined"
+              variant="outlined"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
               value={currency}
-              style={{
-                width: 100,
-                height: 40,
-                marginRight: 15,
-              }}
+              style={{ width: 100, height: 40, marginLeft: 15 }}
               onChange={(e) => setCurrency(e.target.value)}
             >
               <MenuItem value={"USD"}>USD</MenuItem>
@@ -64,6 +68,6 @@ const Header = () => {
       </AppBar>
     </ThemeProvider>
   );
-};
+}
 
 export default Header;
