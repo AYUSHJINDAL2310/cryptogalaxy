@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import HomePage from "./Pages/HomePage";
+import Homepage from "./Pages/Homepage";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CoinPage from "./Pages/CoinPage";
@@ -21,7 +21,7 @@ function App() {
       <div className={classes.App}>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Homepage />} />
           <Route path="/coins/:id" element={<CoinPage />} />
         </Routes>
       </div>
